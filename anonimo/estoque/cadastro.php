@@ -14,8 +14,11 @@ if(isset($_FILES["imagem"])&& $_FILES["imagem"]["error"] == UPLOAD_ERR_OK){
     if($_FILES["imagem"]["size"]>2*1024*1024);
     die("Tamanho não suportado");
 }
-$sql = "INSERT INTO tb_produtos(nome_produto,qnt,preco,categoria) VALUES 
-('$nome','$qnt','$preco','$categoria')";
+$imagem = uniqid("produto_") . "." . $extensao;
+
+move_uploaded_file($_FILES["imagem"]["tmp_name"],"uploads/" . $imagem);
+$sql = "INSERT INTO tb_produtos(nome_produto,qnt,preco,categoria,imagem) VALUES 
+('$nome','$qnt','$preco','$categoria','$imagem')";
 if($conexao->query($sql)){
     echo "Produto enviado com sucesso";
 }else{
