@@ -16,6 +16,7 @@ $resultado = $conexao->query($sql);
     <table>
         <tr>
             <th>ID</th>
+            <th>Imagem</th>
             <th>Nome do Produto</th>
             <th>Categoria</th>
             <th>Preço</th>
@@ -25,6 +26,12 @@ $resultado = $conexao->query($sql);
         <?php while ($produto = $resultado->fetch(PDO::FETCH_ASSOC)) { ?>
         <tr>
             <td><?php echo $produto["id_produto"]; ?></td>
+            <td>
+                <?php if($produto["imagem"]): ?>
+                <img src="upload/<?=$produto["imagem"]?>"
+                <?php else: ?>
+                    <span> Sem imagem</span>
+                    <?php endif; ?>
             <td><?php echo $produto["nome_produto"]; ?></td>
             <td><?php echo $produto["categoria"]; ?></td>
             <td><?php echo $produto["preco"]; ?></td>
