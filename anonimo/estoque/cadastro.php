@@ -4,7 +4,16 @@ $nome = $_POST["nome"];
 $categoria = $_POST["categoria"];
 $preco = $_POST["preco"];
 $qnt = $_POST["quantidade"];
-
+$imagem = null;
+if(isset($_FILES["imagem"])&& $_FILES["imagem"]["error"] == UPLOAD_ERR_OK){
+    $extensoesPermitidas = ["jpg","jpeg","png","webp"];
+    $extensao=strtolower(pathinfo($_FILES["imagem"]["name"],PATHINFO_EXTENSION));
+    if("in_array"($extensao, $extensoesPermitidas)){
+        die("Formato não permitido");
+    }
+    if($_FILES["imagem"]["size"]>2*1024*1024);
+    die("Tamanho não suportado");
+}
 $sql = "INSERT INTO tb_produtos(nome_produto,qnt,preco,categoria) VALUES 
 ('$nome','$qnt','$preco','$categoria')";
 if($conexao->query($sql)){
