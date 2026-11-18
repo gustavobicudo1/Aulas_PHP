@@ -31,7 +31,7 @@ $resultado = $conexao->query($sql);
                 <img src="upload/<?=$produto["imagem"]?>"
                 <?php else: ?>
                     <span> Sem imagem</span>
-                    <?php endif; ?>
+                    <?php endif; ?></td>
             <td><?php echo $produto["nome_produto"]; ?></td>
             <td><?php echo $produto["categoria"]; ?></td>
             <td><?php echo $produto["preco"]; ?></td>
